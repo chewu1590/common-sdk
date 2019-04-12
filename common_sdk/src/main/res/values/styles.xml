@@ -1,0 +1,6 @@
+<resources>
+    <style name="dialog_form_bottm_anim">
+        <item name="android:windowEnterAnimation">@anim/dialog_from_bottom_anim_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_from_bottom_anim_out</item>
+    </style>
+</resources>
