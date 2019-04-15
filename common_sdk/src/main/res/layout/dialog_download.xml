@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="38dp"
+        android:layout_marginRight="38dp"
+        android:background="@drawable/rec_btn_white10"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:text="dfd"
+            android:textColor="#ff333333"
+            android:textSize="16sp" />
+
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:progressDrawable="@drawable/updater_shape_progressbar_mini"
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/updater_progressbar_bg"
+            android:max="100"
+            android:progress="0" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:id="@+id/tv_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#ff333333"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_percentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text=""
+                android:textColor="#ff666666"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="23dp"
+            android:background="#EFEFEF" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="取消下载"
+            android:textColor="#0A92FF"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".samples.updater.UpdaterActivity">
 
     <Button
-        android:id="@+id/btn_take_photo"
+        android:id="@+id/btn_simple"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/select_bg_blue_white"
-        android:text="拍照"
+        android:text="简单使用"
         android:layout_marginTop="50dp"
         android:textColor="@drawable/select_txt_white_black"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -19,15 +19,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_update"
+        android:id="@+id/btn_custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/select_bg_blue_white"
-        android:text="检查更新"
+        android:text="自定义UI"
         android:layout_marginTop="50dp"
         android:textColor="@drawable/select_txt_white_black"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_take_photo"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_simple"/>
 
 </android.support.constraint.ConstraintLayout>

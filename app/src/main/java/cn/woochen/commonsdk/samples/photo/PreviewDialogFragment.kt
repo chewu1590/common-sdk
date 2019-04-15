@@ -1,6 +1,5 @@
 package cn.woochen.commonsdk.samples.photo
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
@@ -15,8 +14,6 @@ import cn.woochen.commonsdk.R
 import cn.woochen.commonsdk.samples.adapter.PreviewImageAdapter
 import kotlinx.android.synthetic.main.fragment_preview_dialog.*
 
-private const val CURRENT_INDEX = "CURRENT_INDEX"
-private const val IMAGE_LIST = "IMAGE_LIST"
 
 /**
  *图片预览
@@ -86,6 +83,8 @@ class PreviewDialogFragment : DialogFragment() {
 
 
     companion object {
+        private const val CURRENT_INDEX = "CURRENT_INDEX"
+        private const val IMAGE_LIST = "IMAGE_LIST"
         @JvmStatic
         fun newInstance(currentIndex: Int, imageList: ArrayList<String>) =
             PreviewDialogFragment().apply {
