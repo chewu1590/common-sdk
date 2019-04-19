@@ -1,1 +1,1 @@
-include ':app', ':common_sdk'
+include ':app', ':common_sdk', ':annotation', ':compiler', ':share_umlibrary', ':sdk_share'

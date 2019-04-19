@@ -613,7 +613,6 @@ private constructor(private val mBuilder: Builder) {
     }
 
     private inner class DefaultDialogListener : DefaultDialog.DialogListener {
-        //        private static final int STATE_DOWNLOAD = 0x0000_0013;
         private var mCurrentState: Int = 0
 
         /**
@@ -659,17 +658,14 @@ private constructor(private val mBuilder: Builder) {
          * 表示当前的状态是检查更新。
          */
         val STATE_CHECK_UPDATE = 2001
-        //        private static final int STATE_CHECK_UPDATE = 0x0000_0010;
         /**
          * 表示当前的状态是无网络。
          */
         val STATE_NETWORK_UNUSABLE = 2002
-        //        private static final int STATE_NETWORK_UNUSABLE = 0x0000_0011;
         /**
          * 表示当前的状态是无WiFi。
          */
         val STATE_WIFI_UNUSABLE = 2003
-        //        private static final int STATE_WIFI_UNUSABLE = 0x0000_0012;
         /**
          * 表示当前的状态是下载中。
          */
