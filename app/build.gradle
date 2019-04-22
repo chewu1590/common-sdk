@@ -36,4 +36,5 @@ dependencies {
     implementation project(':common_sdk')
     kapt project(':compiler')
     implementation project(':sdk_share')
+    implementation project(':sdk-zxing')
 }

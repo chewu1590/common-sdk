@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".samples.share.ShareActivity"></activity>
+        <activity android:name=".samples.scan.ScanActivity"></activity>
+        <activity android:name=".samples.share.ShareActivity" />
         <activity android:name=".samples.updater.UpdaterActivity" />
         <activity android:name=".samples.TakePhotoActivity" />
         <activity android:name=".MainActivity">

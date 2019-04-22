@@ -69,7 +69,7 @@ abstract class  BaseTakePhotoActivity :AppCompatActivity() , TakePhoto.TakeResul
     }
 
     override fun takeFail(result: TResult, msg: String) {
-        println( "takeFail:" + msg)
+        println("takeFail:$msg")
     }
 
     override fun takeCancel() {

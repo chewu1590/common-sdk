@@ -2,22 +2,7 @@
 project includes common third library,such as imagePicker etc
 
 #To get a Git project into your build:
-Step 1. Add the JitPack repository to your build file
-Add it in your root build.gradle at the end of repositories:
-
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
-Step 2. Add the dependency
-
-	dependencies {
-	        implementation 'com.github.chewu1590:common-sdk:1.0.0'
-	}
-
-
+ 在 build.gradle 中添加依赖
 
 	dependencies {
 	        implementation 'cn.woochen:sdk-core:1.0.1'
