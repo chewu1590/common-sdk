@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
-apply plugin: 'bintray-release'
+//apply plugin: 'bintray-release'
 
 android {
     compileSdkVersion 28
@@ -55,6 +55,7 @@ repositories {
 }
 
 
+/*
 publish {
     repoName = rootProject.repoName
     artifactId = 'sdk-core'
@@ -64,4 +65,4 @@ publish {
     publishVersion = rootProject.publishVersion
     desc = rootProject.desc
     website = rootProject.website
-}
+}*/

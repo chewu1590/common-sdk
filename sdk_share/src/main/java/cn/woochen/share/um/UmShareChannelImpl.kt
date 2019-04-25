@@ -12,27 +12,23 @@ import java.lang.IllegalArgumentException
  *@author woochen
  *@time 2019/4/19 13:59
  */
-class UmShareChannelImpl :IShareChannel {
-    private lateinit var shareType:Array<SHARE_MEDIA?>
+class UmShareChannelImpl : IShareChannel {
+    private lateinit var shareType: Array<SHARE_MEDIA?>
 
     override fun setShareTypes(shareTypes: Array<out ShareType>) {
-        if (shareTypes.isEmpty()){
+        if (shareTypes.isEmpty()) {
             throw IllegalArgumentException("please add share type!!!")
         }
         shareType = arrayOfNulls(shareTypes.size)
-        for (type in shareTypes.withIndex()){
-            var shareMEDIA:SHARE_MEDIA?=null
-            when (type.value) {
+        for (type in shareTypes.withIndex()) {
+            var shareMEDIA: SHARE_MEDIA? = when (type.value) {
                 ShareType.WX -> {
-                    shareMEDIA = SHARE_MEDIA.WEIXIN
+                    SHARE_MEDIA.WEIXIN
                 }
                 ShareType.WX_CIRCLE -> {
-                    shareMEDIA = SHARE_MEDIA.WEIXIN_CIRCLE
-                }
-                else -> {
+                    SHARE_MEDIA.WEIXIN_CIRCLE
                 }
             }
-
             if (shareMEDIA != null) {
                 shareType[type.index] = shareMEDIA
             }

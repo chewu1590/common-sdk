@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 
+
 android {
     compileSdkVersion 28
 
@@ -19,6 +20,11 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
+
 }
 
 dependencies {
@@ -28,3 +34,18 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
 
 }
+
+/*
+apply plugin: 'bintray-release'
+
+publish {
+    repoName = rootProject.repoName
+    artifactId = 'sdk-scan'
+    userOrg = rootProject.userOrg
+    groupId = rootProject.groupId
+    uploadName = rootProject.uploadName
+    publishVersion = rootProject.publishVersion
+    desc = rootProject.desc
+    website = rootProject.website
+}
+*/

@@ -47,7 +47,7 @@ class UpdaterActivity : AppCompatActivity(), View.OnClickListener {
             .setCustomCheckDialog(object : DialogEventCallback {
                 override fun onShowCheckHintDialog(updater: Updater, updateInfo: UpdateInfo, isForce: Boolean) {
                     AlertDialog.Builder(this@UpdaterActivity).setMessage("检测到新版本，是否立即更新？")
-                        .setPositiveButton("确定") { dialog, which ->
+                        .setPositiveButton("确定") { dialog, _ ->
                             updater.setCheckHandlerResult(true)
                             dialog.dismiss() }
                         .show()
@@ -57,7 +57,7 @@ class UpdaterActivity : AppCompatActivity(), View.OnClickListener {
                     downloadDialog = AlertDialog.Builder(this@UpdaterActivity)
                         .setTitle("正在下载")
                         .setMessage("已下载0%")
-                        .setNegativeButton("取消") { dialog, which ->
+                        .setNegativeButton("取消") { dialog, _ ->
                             dialog.dismiss()
                         }
                         .create()

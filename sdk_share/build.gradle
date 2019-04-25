@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
-apply plugin: 'bintray-release'
 
 
 android {
@@ -39,6 +38,8 @@ repositories {
     mavenCentral()
 }
 
+/*
+apply plugin: 'bintray-release'
 
 publish {
     repoName = rootProject.repoName
@@ -49,4 +50,4 @@ publish {
     publishVersion = rootProject.publishVersion
     desc = rootProject.desc
     website = rootProject.website
-}
+}*/

@@ -43,7 +43,7 @@ class UpdateHelper private constructor() {
          * @param context 需要一个上下文。
          * @return 返回当前的版本号。
          */
-        fun getCurrentVersionCode(context: Context): Int {
+        fun getCurrentVersionCode(context: Context): Long {
             val packageManager = context.packageManager
             var packageInfo: PackageInfo? = null
             try {
@@ -52,7 +52,7 @@ class UpdateHelper private constructor() {
                 e.printStackTrace()
             }
 
-            return packageInfo?.versionCode ?: 0
+            return packageInfo?.longVersionCode ?: 0
         }
 
         /**

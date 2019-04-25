@@ -69,27 +69,27 @@ class DefaultDialog(private val mContext: Context) {
             } else if (config is InformDialogParams) { //升级提示弹框
                 builder = AlertDialog.Builder(mContext, R.style.dialog)
                 val contentView = LayoutInflater.from(mContext).inflate(R.layout.dialog_update_apk, null)
-                val tv_version_code = contentView.findViewById<TextView>(R.id.tv_version_code)
-                val tv_confirm = contentView.findViewById<TextView>(R.id.tv_confirm)
-                tv_confirm.text = "立即更新"
-                val tv_cancel = contentView.findViewById<TextView>(R.id.tv_cancel)
-                val view_divider = contentView.findViewById<View>(R.id.view_divider)
-                tv_cancel.text = "下次再说"
+                contentView.findViewById<TextView>(R.id.tv_version_code)
+                val tvConfirm = contentView.findViewById<TextView>(R.id.tv_confirm)
+                tvConfirm.text = "立即更新"
+                val tvCancel = contentView.findViewById<TextView>(R.id.tv_cancel)
+                val viewDivider = contentView.findViewById<View>(R.id.view_divider)
+                tvCancel.text = "下次再说"
                 if (listener != null) {
-                    tv_confirm.setOnClickListener {
+                    tvConfirm.setOnClickListener {
                         listener.onDialogDismiss(true)
                         mDialog!!.dismiss()
                     }
-                    tv_cancel.setOnClickListener {
+                    tvCancel.setOnClickListener {
                         listener.onDialogDismiss(false)
                         mDialog!!.dismiss()
                     }
                 }
-                val tv_content = contentView.findViewById<TextView>(R.id.tv_content)
-                tv_content.text = config.content.toString()
+                val tvContent = contentView.findViewById<TextView>(R.id.tv_content)
+                tvContent.text = config.content.toString()
                 if (config.isForceUpdate) {
-                    view_divider.visibility = View.GONE
-                    tv_cancel.visibility = View.GONE
+                    viewDivider.visibility = View.GONE
+                    tvCancel.visibility = View.GONE
                 }
                 builder.setView(contentView)
             }

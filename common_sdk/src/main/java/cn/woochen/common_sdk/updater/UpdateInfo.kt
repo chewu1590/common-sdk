@@ -38,7 +38,7 @@ interface UpdateInfo {
      * @return 返回你要强制更新的版本号，可以返回 null ，如果返回 null 并且 [.isForceUpdate] 返回 true 的话
      * 则表示所有版本全部强制更新。
      */
-    var forceUpdateVersionCodes: IntArray?
+    var forceUpdateVersionCodes: LongArray?
 
     /**
      * 获取Apk文件名(例如 xxx.apk 或 xxx)。后缀名不是必须的。

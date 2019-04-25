@@ -15,9 +15,9 @@ object FileUtil {
         val file = File(filePath)
         var size: Long = 0
         if (file.exists()) {
-            var fis: FileInputStream? = null
+            var fis: FileInputStream?
             fis = FileInputStream(file)
-            size = fis!!.available().toLong()
+            size = fis.available().toLong()
         } else {
             Log.e("获取文件大小", "文件不存在!")
         }
@@ -32,9 +32,9 @@ object FileUtil {
     fun getFileSize(file: File): Long {
         var size: Long = 0
         if (file.exists()) {
-            var fis: FileInputStream? = null
+            var fis: FileInputStream?
             fis = FileInputStream(file)
-            size = fis!!.available().toLong()
+            size = fis.available().toLong()
         } else {
             Log.e("获取文件大小", "文件不存在!")
         }
@@ -47,7 +47,7 @@ object FileUtil {
      */
     fun toFileSize(fileS: Long): String {
         val df = DecimalFormat("#.00")
-        var fileSizeString = ""
+        var fileSizeString: String
         val wrongSize = "0B"
         if (fileS == 0L) {
             return wrongSize

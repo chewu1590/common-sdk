@@ -5,10 +5,13 @@ project includes common third library,such as imagePicker etc
  在 build.gradle 中添加依赖
 
 	dependencies {
-	        implementation 'cn.woochen:sdk-core:1.0.1'
+	        //x.y.z -> 1.0.1
+	        implementation 'cn.woochen:sdk-core:x.y.z'
 	        //option:share
-	        implementation 'cn.woochen:sdk-share:1.0.1'
-	        annotationProcessor 'cn.woochen:sdk-compiler:1.0.1'
+	        implementation 'cn.woochen:sdk-share:x.y.z'
+	        annotationProcessor 'cn.woochen:sdk-compiler:x.y.z'
+	        //option:scan
+	        implementation 'cn.woochen:sdk-scan:x.y.z'
 	}
 
 #THANKS

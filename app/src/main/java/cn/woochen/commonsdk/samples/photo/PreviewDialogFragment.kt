@@ -32,7 +32,7 @@ class PreviewDialogFragment : DialogFragment() {
         setStyle(DialogFragment.STYLE_NORMAL, R.style.full_dialog_fragment)
         arguments?.let {
             mCurrentIndex = it.getInt(CURRENT_INDEX,0)
-            mImagePaths = it.getStringArrayList(IMAGE_LIST)
+            mImagePaths = it.getStringArrayList(IMAGE_LIST)!!
         }
     }
 

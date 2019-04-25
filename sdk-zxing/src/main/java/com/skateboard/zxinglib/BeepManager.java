@@ -22,8 +22,10 @@ import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import java.io.Closeable;
@@ -84,6 +86,7 @@ final class BeepManager implements MediaPlayer.OnErrorListener, Closeable {
     return shouldPlayBeep;
   }
 
+  @RequiresApi(api = Build.VERSION_CODES.KITKAT)
   private MediaPlayer buildMediaPlayer(Context activity) {
     MediaPlayer mediaPlayer = new MediaPlayer();
     try (AssetFileDescriptor file = activity.getResources().openRawResourceFd(R.raw.beep)) {

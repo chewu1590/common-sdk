@@ -90,5 +90,5 @@ class ScanActivity : AppCompatActivity(), View.OnClickListener {
         }
         return true
     }
-    
+
 }
