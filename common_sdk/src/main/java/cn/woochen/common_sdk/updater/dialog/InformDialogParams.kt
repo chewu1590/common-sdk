@@ -28,4 +28,6 @@ class InformDialogParams : DialogParams() {
     override var content: CharSequence? = null
         get() = if (TextUtils.isEmpty(field)) "是否现在更新？" else field
 
+    var apkVersion: String? = ""
+
 }

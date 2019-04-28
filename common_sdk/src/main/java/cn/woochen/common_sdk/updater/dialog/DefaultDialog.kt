@@ -69,7 +69,8 @@ class DefaultDialog(private val mContext: Context) {
             } else if (config is InformDialogParams) { //升级提示弹框
                 builder = AlertDialog.Builder(mContext, R.style.dialog)
                 val contentView = LayoutInflater.from(mContext).inflate(R.layout.dialog_update_apk, null)
-                contentView.findViewById<TextView>(R.id.tv_version_code)
+                val tvVersionCode = contentView.findViewById<TextView>(R.id.tv_version_code)
+                tvVersionCode.text = "v${config.apkVersion}"
                 val tvConfirm = contentView.findViewById<TextView>(R.id.tv_confirm)
                 tvConfirm.text = "立即更新"
                 val tvCancel = contentView.findViewById<TextView>(R.id.tv_cancel)

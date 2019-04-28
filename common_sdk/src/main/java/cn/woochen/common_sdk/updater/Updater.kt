@@ -187,6 +187,7 @@ private constructor(private val mBuilder: Builder) {
             mBuilder.loadDialogConfig.isForceUpdate = isForceUpdate(updateInfo)//配置下载弹窗(是否能后台下载)
             mBuilder.loadDialogConfig.apkSize = updateInfo.apkSize!!//apk大小
             mBuilder.informDialogConfig.content = updateInfo.updateMessage//配置版本检测弹窗(更新信息)
+            mBuilder.informDialogConfig.apkVersion = updateInfo.versionName//配置版本检测弹窗(更新信息)
             //如果这个条件满足说明上一次没有安装。有因为即使上一次没有安装最新的版本也有可能超出了上一次下载的版本，所以要在这里判断。
             val apkPath: String? = UpdateHelper.getApkPathFromSp(mApplicationContext)
             if (UpdateHelper.getApkVersionCodeFromSp(mApplicationContext) == updateInfo.versionCode
