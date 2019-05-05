@@ -39,7 +39,7 @@ ext {
     userOrg = 'woochen'//bintray.com用户名
     groupId = 'cn.woochen'//jcenter上的路径
     uploadName = 'CommonSdk'
-    publishVersion = '1.0.1'//版本号
+    publishVersion = '1.0.2.1'//版本号
     desc = 'common sdk'
     website = 'https://github.com/chewu1590/common-sdk'
 }
