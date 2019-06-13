@@ -99,7 +99,7 @@ private constructor(private val mBuilder: Builder) {
         if (mNetWorkStateChangedReceiver == null) {
             mNetWorkStateChangedReceiver = NetWorkStateChangedReceiver()
         }
-        if (mNetWorkStateChangedReceiver?.isRegister!!) {
+        if (!mNetWorkStateChangedReceiver?.isRegister!!) {
             NetWorkStateUtil.registerReceiver(mApplicationContext, mNetWorkStateChangedReceiver!!)
         }
     }

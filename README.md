@@ -5,7 +5,8 @@ project includes common third library,such as imagePicker etc
  在 build.gradle 中添加依赖
 
 	dependencies {
-	        //x.y.z -> 1.0.1
+	        //x.y.z -> 1.0.7
+	        //core contain:updater,takePhoto
 	        implementation 'cn.woochen:sdk-core:x.y.z'
 	        //option:share
 	        implementation 'cn.woochen:sdk-share:x.y.z'

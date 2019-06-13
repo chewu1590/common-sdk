@@ -35,7 +35,6 @@ dependencies {
 
 }
 
-/*
 apply plugin: 'bintray-release'
 
 publish {
@@ -48,4 +47,3 @@ publish {
     desc = rootProject.desc
     website = rootProject.website
 }
-*/

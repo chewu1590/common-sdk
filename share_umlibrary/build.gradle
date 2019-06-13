@@ -29,7 +29,6 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
 }
 
-/*
 apply plugin: 'bintray-release'
 
 publish {
@@ -42,4 +41,3 @@ publish {
     desc = rootProject.desc
     website = rootProject.website
 }
-*/
