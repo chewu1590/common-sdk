@@ -30,7 +30,7 @@ class DownloadService : Service() {
     private var scheduledExecutorService: ScheduledExecutorService? = null
 
     //下载任务ID
-    private var downloadId: Long = 0
+    private var downloadId: Long? = 0
     private var onProgressListener: DownloadProgressCallback? = null
 
     private  var downLoadHandler: Handler? = null
@@ -41,7 +41,6 @@ class DownloadService : Service() {
     private var mNotifyDescription: String? = null
     private var mApkName: String? = null
     private var mLastFraction = 20000
-    //    private int mLastFraction = 0xFFFF_FFFF;
     /**
      * 服务被解绑的监听。
      */
@@ -61,8 +60,8 @@ class DownloadService : Service() {
         get() {
             val bytesAndStatus = intArrayOf(-1, -1, 0)
             if (mCursor == null) {
-                val query = DownloadManager.Query().setFilterById(downloadId)
-                mCursor = downloadManager!!.query(query)
+                val query = DownloadManager.Query().setFilterById(downloadId!!)
+                mCursor = downloadManager?.query(query)
             } else {
                 mCursor!!.requery()
             }
@@ -89,22 +88,22 @@ class DownloadService : Service() {
                                 mLastStatus = obj
                                 when (obj) {
                                     DownloadManager.STATUS_FAILED -> {
-                                        onProgressListener!!.onLoadFailed()
+                                        onProgressListener?.onLoadFailed()
                                         mIsLoadFailed = true
                                     }
-                                    DownloadManager.STATUS_PAUSED -> onProgressListener!!.onLoadPaused()
-                                    DownloadManager.STATUS_PENDING -> onProgressListener!!.onLoadPending()
+                                    DownloadManager.STATUS_PAUSED -> onProgressListener?.onLoadPaused()
+                                    DownloadManager.STATUS_PENDING -> onProgressListener?.onLoadPending()
                                     DownloadManager.STATUS_RUNNING -> {
                                         if (mLastFraction == 20000 && !mIsStarted) {
                                             mIsStarted = true
-                                            onProgressListener!!.onStartDownLoad()
+                                            onProgressListener?.onStartDownLoad()
                                         }
                                         if (msg.arg1 >= 0 && msg.arg2 > 0) {
                                             var fraction = ((msg.arg1 + 0f) / msg.arg2 * 100).toInt()
                                             if (fraction == 0) fraction = 1
                                             if (mLastFraction != fraction) {
                                                 mLastFraction = fraction
-                                                onProgressListener!!.onProgress(
+                                                onProgressListener?.onProgress(
                                                     msg.arg1.toLong(),
                                                     msg.arg2.toLong(),
                                                     mLastFraction
@@ -117,7 +116,7 @@ class DownloadService : Service() {
                                         if (fraction == 0) fraction = 1
                                         if (mLastFraction != fraction) {
                                             mLastFraction = fraction
-                                            onProgressListener!!.onProgress(
+                                            onProgressListener?.onProgress(
                                                 msg.arg1.toLong(),
                                                 msg.arg2.toLong(),
                                                 mLastFraction
@@ -130,7 +129,7 @@ class DownloadService : Service() {
 
                         WHAT_COMPLETED -> if (!mIsLoadFailed) {
                             val apkFile = msg.obj as File
-                            onProgressListener!!.onLoadSuccess(apkFile, false)
+                            onProgressListener?.onLoadSuccess(apkFile, false)
                         }
                     }
                 }
@@ -174,7 +173,7 @@ class DownloadService : Service() {
         request.setTitle(mNotifyTitle).setDescription(mNotifyDescription).setNotificationVisibility(visibility)
             .setDestinationInExternalFilesDir(applicationContext, Environment.DIRECTORY_DOWNLOADS, mApkName)
         /*将下载请求放入队列， return下载任务的ID*/
-        downloadId = downloadManager!!.enqueue(request)
+        downloadId = downloadManager?.enqueue(request)
         registerBroadcast()
     }
 
@@ -223,7 +222,7 @@ class DownloadService : Service() {
      */
     private fun close() {
         if (scheduledExecutorService != null && !scheduledExecutorService!!.isShutdown) {
-            scheduledExecutorService!!.shutdown()
+            scheduledExecutorService?.shutdown()
         }
 
         if (mCursor != null) {
@@ -232,7 +231,7 @@ class DownloadService : Service() {
         }
 
         if (downLoadHandler != null) {
-            downLoadHandler!!.removeCallbacksAndMessages(null)
+            downLoadHandler?.removeCallbacksAndMessages(null)
             downLoadHandler = null
         }
     }
@@ -242,8 +241,8 @@ class DownloadService : Service() {
      */
     private fun updateProgress() {
         val bytesAndStatus = bytesAndStatus
-        downLoadHandler!!.sendMessage(
-            downLoadHandler!!.obtainMessage(
+        downLoadHandler?.sendMessage(
+            downLoadHandler?.obtainMessage(
                 WHAT_PROGRESS,
                 bytesAndStatus[0],
                 bytesAndStatus[1],
@@ -261,14 +260,14 @@ class DownloadService : Service() {
             val downId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
             when (intent.action) {
                 DownloadManager.ACTION_DOWNLOAD_COMPLETE -> if (downloadId == downId && downId != -1L && downloadManager != null) {
-                    val apkFile = getRealFile(downloadManager!!.getUriForDownloadedFile(downloadId))
+                    val apkFile = getRealFile(downloadManager?.getUriForDownloadedFile(downloadId!!))
 
                     if (apkFile != null && apkFile.exists()) {
                         val realPath = apkFile.absolutePath
                         UpdateHelper.putApkPath2Sp(applicationContext, realPath)
                     }
                     updateProgress()
-                    downLoadHandler!!.sendMessage(downLoadHandler!!.obtainMessage(WHAT_COMPLETED, apkFile))
+                    downLoadHandler?.sendMessage(downLoadHandler?.obtainMessage(WHAT_COMPLETED, apkFile))
                 }
             }
         }
@@ -317,7 +316,7 @@ class DownloadService : Service() {
          */
         override fun onChange(selfChange: Boolean) {
             synchronized(this.javaClass) {
-                scheduledExecutorService!!.scheduleAtFixedRate(progressRunnable, 0, 100, TimeUnit.MILLISECONDS)
+                scheduledExecutorService?.scheduleAtFixedRate(progressRunnable, 0, 100, TimeUnit.MILLISECONDS)
             }
         }
     }
@@ -363,7 +362,7 @@ class DownloadService : Service() {
         unregisterBroadcast()
         unregisterContentObserver()
         if (downloadManager != null) {
-            downloadManager!!.remove(downloadId)
+            downloadManager?.remove(downloadId!!)
         }
     }
 

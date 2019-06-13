@@ -99,7 +99,7 @@ private constructor(private val mBuilder: Builder) {
         if (mNetWorkStateChangedReceiver == null) {
             mNetWorkStateChangedReceiver = NetWorkStateChangedReceiver()
         }
-        if (!mNetWorkStateChangedReceiver!!.isRegister) {
+        if (mNetWorkStateChangedReceiver?.isRegister!!) {
             NetWorkStateUtil.registerReceiver(mApplicationContext, mNetWorkStateChangedReceiver!!)
         }
     }
@@ -124,14 +124,14 @@ private constructor(private val mBuilder: Builder) {
      */
     private fun showProgressDialog() {
         if (!mBuilder.noDialog) {
-            mDefaultDialog!!.show(
+            mDefaultDialog?.show(
                 this@Updater,
                 mBuilder.loadDialogConfig,
                 mDialogListener.changeState(mDialogListener.STATE_DOWNLOAD)
             )
         } else {
             if (mBuilder.dialogCallback != null) {
-                mDefaultDialog!!.dismissAll()
+                mDefaultDialog?.dismissAll()
                 mBuilder.dialogCallback!!.onShowProgressDialog(isForceUpdate(mUpdateInfo!!))
             } else {
                 throw IllegalArgumentException("you mast call Updater's \"setCallback(UpdateCallback callback)\" Method。")
@@ -169,13 +169,13 @@ private constructor(private val mBuilder: Builder) {
             throw IllegalArgumentException("Because you neither set up to monitor installed automatically, so the check update is pointless.")
         }
         if (!NetWorkStateUtil.isConnected(mApplicationContext)) {//网络不可用
-            mCallback!!.onCompleted(false, UpdateHelper.getCurrentVersionName(mApplicationContext))
+            mCallback?.onCompleted(false, UpdateHelper.getCurrentVersionName(mApplicationContext))
             return
         }
         if (updateInfo != null && mUpdateInfo !== updateInfo) {
             if (TextUtils.isEmpty(updateInfo.downLoadsUrl)) {//没有下载地址直接失败
-                mCallback!!.onLoadFailed()
-                mCallback.onCompleted(
+                mCallback?.onLoadFailed()
+                mCallback?.onCompleted(
                     !TextUtils.equals(updateInfo.versionName, getLocalVersionName(mApplicationContext)),
                     getLocalVersionName(mApplicationContext)
                 )
@@ -190,7 +190,7 @@ private constructor(private val mBuilder: Builder) {
             mBuilder.informDialogConfig.apkVersion = updateInfo.versionName//配置版本检测弹窗(更新信息)
             //如果这个条件满足说明上一次没有安装。有因为即使上一次没有安装最新的版本也有可能超出了上一次下载的版本，所以要在这里判断。
             val apkPath: String? = UpdateHelper.getApkPathFromSp(mApplicationContext)
-            if (UpdateHelper.getApkVersionCodeFromSp(mApplicationContext) == updateInfo.versionCode
+            if (TextUtils.equals(UpdateHelper.getApkVersionNameFromSp(mApplicationContext),updateInfo.versionName)
                 && (apkPath?.toLowerCase()?.endsWith(".apk")!!)
                 && File(apkPath).exists()
             ) {//已经下载过
@@ -226,7 +226,7 @@ private constructor(private val mBuilder: Builder) {
      */
     private fun showUpdateInformDialog() {
 
-        mDefaultDialog!!.show(
+        mDefaultDialog?.show(
             this@Updater,
             mBuilder.informDialogConfig,
             mDialogListener.changeState(mDialogListener.STATE_CHECK_UPDATE)
@@ -298,11 +298,11 @@ private constructor(private val mBuilder: Builder) {
     }
 
     private fun showNetWorkUnusableDialog() {
-        mDefaultDialog!!.showNetWorkUnusableDialog(mDialogListener.changeState(mDialogListener.STATE_NETWORK_UNUSABLE))
+        mDefaultDialog?.showNetWorkUnusableDialog(mDialogListener.changeState(mDialogListener.STATE_NETWORK_UNUSABLE))
     }
 
     private fun showWiFiUnusableDialog() {
-        mDefaultDialog!!.showWiFiUnusableDialog(mDialogListener.changeState(mDialogListener.STATE_WIFI_UNUSABLE))
+        mDefaultDialog?.showWiFiUnusableDialog(mDialogListener.changeState(mDialogListener.STATE_WIFI_UNUSABLE))
     }
 
     private fun getApkName(updateInfo: UpdateInfo): String {
@@ -561,6 +561,7 @@ private constructor(private val mBuilder: Builder) {
         override fun onProgress(total: Long, current: Long, percentage: Int) {
             if (percentage == 100 || total == current) {
                 UpdateHelper.putApkVersionCode2Sp(mApplicationContext, mUpdateInfo?.versionCode!!)
+                UpdateHelper.putApkVersionName2Sp(mApplicationContext, mUpdateInfo?.versionName!!)
             }
             mCallback?.onProgress(total, current, percentage)
             if (mBuilder.dialogCallback != null) {
@@ -586,7 +587,7 @@ private constructor(private val mBuilder: Builder) {
         override fun onLoadFailed() {
             unregisterNetWorkReceiver()
             stopService()  //结束服务
-            mDefaultDialog!!.dismissAll()
+            mDefaultDialog?.dismissAll()
             if (mCallback != null) {
                 mCallback.onLoadFailed()
                 mCallback.onCompleted(true, UpdateHelper.getCurrentVersionName(mApplicationContext))
@@ -609,7 +610,7 @@ private constructor(private val mBuilder: Builder) {
      */
     fun endDownloadTask() {
         if (mOnProgressListener != null) {
-            mOnProgressListener!!.onLoadFailed()
+            mOnProgressListener?.onLoadFailed()
         }
     }
 

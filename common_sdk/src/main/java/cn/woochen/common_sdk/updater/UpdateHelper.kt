@@ -38,6 +38,8 @@ class UpdateHelper private constructor() {
          */
         private val SP_KEY_DOWNLOAD_APK_VERSION_CODE = "apkUpdater.apkVersionCode"
 
+        private val SP_KEY_DOWNLOAD_APK_VERSION_NAME = "apkUpdater.apkVersionName"
+
         /**
          * 获取当前的版本号。
          * @param context 需要一个上下文。
@@ -137,6 +139,7 @@ class UpdateHelper private constructor() {
                 if (apkFile.delete()) {
                     getEdit(context).remove(SP_KEY_DOWNLOAD_APK_PATH)
                     getEdit(context).remove(SP_KEY_DOWNLOAD_APK_VERSION_CODE)
+                    getEdit(context).remove(SP_KEY_DOWNLOAD_APK_VERSION_NAME)
                 }
             }
         }
@@ -154,9 +157,18 @@ class UpdateHelper private constructor() {
             getEdit(context).putInt(SP_KEY_DOWNLOAD_APK_VERSION_CODE, value).commit()
         }
 
+         fun putApkVersionName2Sp(context: Context, value: String) {
+            getEdit(context).putString(SP_KEY_DOWNLOAD_APK_VERSION_NAME, value).commit()
+        }
+
          fun getApkVersionCodeFromSp(context: Context): Int {
             return context.getSharedPreferences(CONFIG_NAME, Context.MODE_PRIVATE)
                 .getInt(SP_KEY_DOWNLOAD_APK_VERSION_CODE, -1)
+        }
+
+         fun getApkVersionNameFromSp(context: Context): String {
+            return context.getSharedPreferences(CONFIG_NAME, Context.MODE_PRIVATE)
+                .getString(SP_KEY_DOWNLOAD_APK_VERSION_NAME,"")
         }
 
         /**

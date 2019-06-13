@@ -79,11 +79,11 @@ class DefaultDialog(private val mContext: Context) {
                 if (listener != null) {
                     tvConfirm.setOnClickListener {
                         listener.onDialogDismiss(true)
-                        mDialog!!.dismiss()
+                        mDialog?.dismiss()
                     }
                     tvCancel.setOnClickListener {
                         listener.onDialogDismiss(false)
-                        mDialog!!.dismiss()
+                        mDialog?.dismiss()
                     }
                 }
                 val tvContent = contentView.findViewById<TextView>(R.id.tv_content)
@@ -94,14 +94,14 @@ class DefaultDialog(private val mContext: Context) {
                 }
                 builder.setView(contentView)
             }
-            builder!!.setCancelable(false)
-            mDialog = builder.create()
+            builder?.setCancelable(false)
+            mDialog = builder?.create()
         }
-        mDialog!!.show()
-        val window = mDialog!!.window
-        val layoutParams = window!!.attributes
-        layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
-        window.attributes = layoutParams
+        mDialog?.show()
+        val window = mDialog?.window
+        val layoutParams = window?.attributes
+        layoutParams?.width = ViewGroup.LayoutParams.MATCH_PARENT
+        window?.attributes = layoutParams
     }
 
     /**
@@ -110,10 +110,10 @@ class DefaultDialog(private val mContext: Context) {
      * @param percentage
      */
     fun updateDownLoadsProgress(percentage: Int) {
-        mProgressBar!!.progress = percentage
-        mPercentageView!!.text = String.format(Locale.CHINA, "%d %%", percentage)
-        if (percentage == mProgressBar!!.max) {
-            mProgressBar!!.post(mAction)
+        mProgressBar?.progress = percentage
+        mPercentageView?.text = String.format(Locale.CHINA, "%d %%", percentage)
+        if (percentage == mProgressBar?.max) {
+            mProgressBar?.post(mAction)
         }
     }
 
@@ -129,7 +129,7 @@ class DefaultDialog(private val mContext: Context) {
         if (listener != null && mOnClickListener == null) {
             mOnClickListener = DialogClickListener()
         }
-        mOnClickListener!!.setListener(listener)
+        mOnClickListener?.setListener(listener)
         if (mWiFiUnusableDialog == null) {
             mWiFiUnusableDialog = AlertDialog.Builder(mContext, mConfig?.style!!)
                 .setCancelable(false)
@@ -139,7 +139,7 @@ class DefaultDialog(private val mContext: Context) {
                 .setNegativeButton("稍后下载", mOnClickListener)
                 .create()
         }
-        mWiFiUnusableDialog!!.show()
+        mWiFiUnusableDialog?.show()
     }
 
 
@@ -166,7 +166,7 @@ class DefaultDialog(private val mContext: Context) {
             mOnClickListener = DialogClickListener()
         }
 
-        mOnClickListener!!.setListener(listener)
+        mOnClickListener?.setListener(listener)
         if (mNetWorkUnusableDialog == null) {
             mNetWorkUnusableDialog = AlertDialog.Builder(mContext, mConfig?.style!!)
                 .setCancelable(false)
@@ -175,7 +175,7 @@ class DefaultDialog(private val mContext: Context) {
                 .setNegativeButton("确定", mOnClickListener)
                 .create()
         }
-        mNetWorkUnusableDialog!!.show()
+        mNetWorkUnusableDialog?.show()
     }
 
     private inner class DialogClickListener : DialogInterface.OnClickListener {
@@ -186,7 +186,7 @@ class DefaultDialog(private val mContext: Context) {
         }
 
         override fun onClick(dialog: DialogInterface, which: Int) {
-            mListener!!.onDialogDismiss(which == DialogInterface.BUTTON_POSITIVE)
+            mListener?.onDialogDismiss(which == DialogInterface.BUTTON_POSITIVE)
         }
     }
 

@@ -15,7 +15,6 @@ sourceCompatibility = "7"
 targetCompatibility = "7"
 
 
-/*
 apply plugin: 'bintray-release'
 publish {
     repoName = rootProject.repoName
@@ -26,4 +25,4 @@ publish {
     publishVersion = rootProject.publishVersion
     desc = rootProject.desc
     website = rootProject.website
-}*/
+}

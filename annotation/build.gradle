@@ -1,5 +1,4 @@
 apply plugin: 'java-library'
-//apply plugin: 'bintray-release'
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -8,8 +7,7 @@ dependencies {
 sourceCompatibility = "7"
 targetCompatibility = "7"
 
-
-/*
+apply plugin: 'bintray-release'
 publish {
     repoName = rootProject.repoName
     artifactId = 'sdk-annotation'
@@ -19,4 +17,4 @@ publish {
     publishVersion = rootProject.publishVersion
     desc = rootProject.desc
     website = rootProject.website
-}*/
+}
