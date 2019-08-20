@@ -57,7 +57,7 @@ abstract class BaseTakePhotoFragment : Fragment(), TakePhoto.TakeResultListener,
         Log.i(TAG, "takeSuccess：" + result.image.compressPath)
     }
 
-    override fun takeFail(result: TResult, msg: String) {
+    override fun takeFail(result: TResult?, msg: String) {
         Log.i(TAG, "takeFail:$msg")
     }
 

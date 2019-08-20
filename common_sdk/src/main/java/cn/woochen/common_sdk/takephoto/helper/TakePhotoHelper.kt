@@ -7,7 +7,6 @@ import cn.woochen.common_sdk.takephoto.core.TakePhoto
 import cn.woochen.common_sdk.takephoto.model.CropOptions
 import cn.woochen.common_sdk.takephoto.model.LubanOptions
 import cn.woochen.common_sdk.takephoto.model.TakePhotoOptions
-import com.darsh.multipleimageselect.helpers.Constants.limit
 import java.io.File
 
 /**

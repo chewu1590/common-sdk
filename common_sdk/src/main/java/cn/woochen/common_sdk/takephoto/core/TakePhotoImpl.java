@@ -8,21 +8,27 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.widget.Toast;
 import cn.woochen.common_sdk.R;
 import cn.woochen.common_sdk.takephoto.compress.CompressConfig;
 import cn.woochen.common_sdk.takephoto.compress.CompressImage;
 import cn.woochen.common_sdk.takephoto.compress.CompressImageImpl;
+import cn.woochen.common_sdk.takephoto.helper.GifSizeFilter;
+import cn.woochen.common_sdk.takephoto.helper.Glide4Engine;
 import cn.woochen.common_sdk.takephoto.model.*;
 import cn.woochen.common_sdk.takephoto.permission.PermissionManager;
 import cn.woochen.common_sdk.takephoto.uitl.*;
-import com.darsh.multipleimageselect.helpers.Constants;
-import com.darsh.multipleimageselect.models.Image;
 import com.soundcloud.android.crop.Crop;
-
+import com.zhihu.matisse.Matisse;
+import com.zhihu.matisse.MimeType;
+import com.zhihu.matisse.engine.impl.GlideEngine;
+import com.zhihu.matisse.filter.Filter;
+import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -223,7 +229,7 @@ public class TakePhotoImpl implements TakePhoto {
                 break;
             case TConstant.RC_PICK_MULTIPLE://多选图片返回结果
                 if (resultCode == Activity.RESULT_OK && data != null) {
-                    ArrayList<Image> images = data.getParcelableArrayListExtra(Constants.INTENT_EXTRA_IMAGES);
+                  /*  ArrayList<Image> images = data.getParcelableArrayListExtra(Constants.INTENT_EXTRA_IMAGES);
                     if (cropOptions != null) {
                         try {
                             onCrop(MultipleCrop.of(TUtils.convertImageToUri(contextWrap.getActivity(), images), contextWrap.getActivity(),
@@ -235,6 +241,20 @@ public class TakePhotoImpl implements TakePhoto {
                     } else {
                         takeResult(TResult.of(TUtils.getTImagesWithImages(images, fromType)));
                     }
+*/
+                    List<String> images = Matisse.obtainPathResult(data);
+                    Log.d("Matisse", "mSelected: " + images);
+                  if(cropOptions != null){
+                      try {
+                          onCrop(MultipleCrop.of(TUtils.convertImageToUri(contextWrap.getActivity(), images), contextWrap.getActivity(),
+                                  fromType), cropOptions);
+                      } catch (TException e) {
+                          cropContinue(false);
+                          e.printStackTrace();
+                      }
+                  } else {
+                      takeResult(TResult.of(TUtils.getTImagesWithImages(images, fromType)));
+                  }
 
                 } else {
                     listener.takeCancel();
@@ -250,8 +270,29 @@ public class TakePhotoImpl implements TakePhoto {
         if (PermissionManager.TPermissionType.WAIT.equals(permissionType)) {
             return;
         }
-        TUtils.startActivityForResult(contextWrap,
-            new TIntentWap(IntentUtils.getPickMultipleIntent(contextWrap, limit), TConstant.RC_PICK_MULTIPLE));
+        /*TUtils.startActivityForResult(contextWrap,
+            new TIntentWap(IntentUtils.getPickMultipleIntent(contextWrap, limit), TConstant.RC_PICK_MULTIPLE));*/
+        String packageName = contextWrap.getActivity().getApplicationInfo().packageName;
+        Matisse matisse = null;
+        if(contextWrap.getFragment() != null){
+            matisse = Matisse.from(contextWrap.getFragment());
+        }else {
+            matisse = Matisse.from(contextWrap.getActivity());
+        }
+        matisse.choose(MimeType.ofImage())
+                .showSingleMediaType(true)//是否只显示选择的类型的缩略图
+                .countable(true)//是否显示自增标识
+                .maxSelectable(limit)//最大图片数量
+                .originalEnable(true)//提示是否使用原图
+                .autoHideToolbarOnSingleTap(true)//是否单击隐藏上下状态栏
+                //这两行要连用 是否在选择图片中展示照相 和适配安卓7.0 FileProvider
+                .capture(true)
+                .captureStrategy(new CaptureStrategy(true,packageName +".photoprovider"))
+                .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
+//                .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
+                .thumbnailScale(0.85f)
+                .imageEngine(new Glide4Engine())
+                .forResult(TConstant.RC_PICK_MULTIPLE);
     }
 
     @Override

@@ -20,5 +20,6 @@
     <string name="add">确定</string>
     <string name="selected">已选</string>
     <string name="limit_exceeded">最多能选 %d 张</string>
+    <string name="error_gif">长宽不小于 %1$dpx，且大小不超过 %2$sM。</string>
 
 </resources>

@@ -6,9 +6,6 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 import cn.woochen.common_sdk.takephoto.model.CropOptions;
-import cn.woochen.common_sdk.takephoto.model.TContextWrap;
-import com.darsh.multipleimageselect.activities.AlbumSelectActivity;
-import com.darsh.multipleimageselect.helpers.Constants;
 
 
 /**
@@ -25,11 +22,12 @@ public class IntentUtils {
      *
      * @param limit 最多选择图片张数的限制
      */
-    public static Intent getPickMultipleIntent(TContextWrap contextWrap, int limit) {
+   /* public static Intent getPickMultipleIntent(TContextWrap contextWrap, int limit) {
         Intent intent = new Intent(contextWrap.getActivity(), AlbumSelectActivity.class);
         intent.putExtra(Constants.INTENT_EXTRA_LIMIT, limit > 0 ? limit : 1);
         return intent;
-    }
+    }*/
+
 
     /**
      * 获取裁剪照片的Intent

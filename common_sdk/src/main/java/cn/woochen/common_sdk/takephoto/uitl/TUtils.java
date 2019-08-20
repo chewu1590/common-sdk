@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.content.FileProvider;
@@ -13,8 +14,8 @@ import android.util.Log;
 import android.widget.Toast;
 import cn.woochen.common_sdk.R;
 import cn.woochen.common_sdk.takephoto.model.*;
-import com.darsh.multipleimageselect.models.Image;
 import com.soundcloud.android.crop.Crop;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,13 +35,21 @@ public class TUtils {
      * @param images
      * @return
      */
-    public static ArrayList<Uri> convertImageToUri(Context context, ArrayList<Image> images) throws TException {
+    public static ArrayList<Uri> convertImageToUri(Context context, List<String> images) throws TException {
+        ArrayList<Uri> uris = new ArrayList();
+        for (String image : images) {
+            uris.add(FileProvider.getUriForFile(context, TConstant.getFileProviderName(context), new File(image)));
+        }
+        return uris;
+    }
+
+  /*  public static ArrayList<Uri> convertImageToUri(Context context, ArrayList<Image> images) throws TException {
         ArrayList<Uri> uris = new ArrayList();
         for (Image image : images) {
             uris.add(FileProvider.getUriForFile(context, TConstant.getFileProviderName(context), new File(image.path)));
         }
         return uris;
-    }
+    }*/
 
     /**
      * 将Image集合转换成TImage集合
@@ -48,13 +57,20 @@ public class TUtils {
      * @param images
      * @return
      */
-    public static ArrayList<TImage> getTImagesWithImages(ArrayList<Image> images, TImage.FromType fromType) {
+    public static ArrayList<TImage> getTImagesWithImages(List<String> images, TImage.FromType fromType) {
+        ArrayList<TImage> tImages = new ArrayList();
+        for (String image : images) {
+            tImages.add(TImage.of(image, fromType));
+        }
+        return tImages;
+    }
+  /*  public static ArrayList<TImage> getTImagesWithImages(ArrayList<Image> images, TImage.FromType fromType) {
         ArrayList<TImage> tImages = new ArrayList();
         for (Image image : images) {
             tImages.add(TImage.of(image.path, fromType));
         }
         return tImages;
-    }
+    }*/
 
     /**
      * 将Uri集合转换成TImage集合

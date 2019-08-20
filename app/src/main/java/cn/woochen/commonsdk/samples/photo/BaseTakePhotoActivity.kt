@@ -68,7 +68,7 @@ abstract class  BaseTakePhotoActivity :AppCompatActivity() , TakePhoto.TakeResul
         println( "takeSuccess：" + result.image.compressPath)
     }
 
-    override fun takeFail(result: TResult, msg: String) {
+    override fun takeFail(result: TResult?, msg: String) {
         println("takeFail:$msg")
     }
 
