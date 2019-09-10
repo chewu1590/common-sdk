@@ -36,6 +36,11 @@ class UpdaterActivity : AppCompatActivity(), View.OnClickListener {
     private fun customUIUpdate() {
         val updateVersionBean = UpdateVersionBean()
         updateVersionBean.versionName
+        val updater = updater()
+        updater.check(updateVersionBean)
+    }
+
+    private fun updater(): Updater {
         val updater = Updater.Builder(this)
             .setCallback(object : UpdateCallback() {
                 override fun onCompleted(haveNewVersion: Boolean, curVersionName: String) {
@@ -49,7 +54,8 @@ class UpdaterActivity : AppCompatActivity(), View.OnClickListener {
                     AlertDialog.Builder(this@UpdaterActivity).setMessage("检测到新版本，是否立即更新？")
                         .setPositiveButton("确定") { dialog, _ ->
                             updater.setCheckHandlerResult(true)
-                            dialog.dismiss() }
+                            dialog.dismiss()
+                        }
                         .show()
                 }
 
@@ -71,7 +77,7 @@ class UpdaterActivity : AppCompatActivity(), View.OnClickListener {
 
             })
             .builder()
-        updater.check(updateVersionBean)
+        return updater
     }
 
     private fun simpleUpdate() {
