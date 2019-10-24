@@ -34,7 +34,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation project(':common_sdk')
-    kapt project(':compiler')
-    implementation project(':sdk_share')
-    implementation project(':sdk-zxing')
 }

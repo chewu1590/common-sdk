@@ -35,7 +35,7 @@ class TakePhotoActivity : BaseTakePhotoActivity() {
         mAddImageAdapter.onItemClickListener = object : AddImageAdapter.OnItemClickListener {
             override fun add() {
                 val takePhotoDialog = TakePhotoDialog.newInsatance()
-                takePhotoDialog.setTakePhoto(getTakePhoto(), false)
+                takePhotoDialog.setTakePhoto(getTakePhoto(), true)
                 takePhotoDialog.show(supportFragmentManager, "takePhoto")
             }
         }

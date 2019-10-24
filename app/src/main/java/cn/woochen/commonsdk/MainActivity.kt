@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import cn.woochen.commonsdk.samples.TakePhotoActivity
-import cn.woochen.commonsdk.samples.scan.ScanActivity
-import cn.woochen.commonsdk.samples.share.ShareActivity
 import cn.woochen.commonsdk.samples.updater.UpdaterActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,12 +16,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             btn_update -> {
                 start(UpdaterActivity::class.java)
-            }
-            btn_share -> {
-                start(ShareActivity::class.java)
-            }
-            btn_scan -> {
-                start(ScanActivity::class.java)
             }
         }
     }
@@ -38,8 +30,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun initListener() {
         btn_take_photo.setOnClickListener(this)
         btn_update.setOnClickListener(this)
-        btn_share.setOnClickListener(this)
-        btn_scan.setOnClickListener(this)
     }
 
     private fun start(clazz: Class<*>) {

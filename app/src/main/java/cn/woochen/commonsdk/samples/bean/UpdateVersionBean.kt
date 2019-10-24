@@ -7,7 +7,7 @@ class UpdateVersionBean : UpdateInfo, DefaultValue {
     override var versionCode: Int? = null
         get() = defaultValue(field, 1)
     override var versionName: String? = null
-        get() = defaultValue(field, "1.0")
+        get() = defaultValue(field, "2.0")
     override var downLoadsUrl: String? = null
         get() = defaultValue(field, "https://image.imyxg.com/client1.9.1.apk")
     override var isForceUpdate: Boolean? = null

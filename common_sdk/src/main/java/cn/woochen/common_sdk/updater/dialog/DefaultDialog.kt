@@ -131,7 +131,13 @@ class DefaultDialog(private val mContext: Context) {
         }
         mOnClickListener?.setListener(listener)
         if (mWiFiUnusableDialog == null) {
-            mWiFiUnusableDialog = AlertDialog.Builder(mContext, mConfig?.style!!)
+            var builder: AlertDialog.Builder?
+            if (mConfig == null){
+                builder = AlertDialog.Builder(mContext)
+            }else{
+                builder = AlertDialog.Builder(mContext, mConfig?.style!!)
+            }
+            mWiFiUnusableDialog = builder
                 .setCancelable(false)
                 .setTitle("提示：")
                 .setMessage("当前为非WiFi网络，是否继续下载？")
@@ -168,7 +174,13 @@ class DefaultDialog(private val mContext: Context) {
 
         mOnClickListener?.setListener(listener)
         if (mNetWorkUnusableDialog == null) {
-            mNetWorkUnusableDialog = AlertDialog.Builder(mContext, mConfig?.style!!)
+            var builder: AlertDialog.Builder?
+            if (mConfig == null){
+                 builder = AlertDialog.Builder(mContext)
+            }else{
+                builder = AlertDialog.Builder(mContext, mConfig?.style!!)
+            }
+            mNetWorkUnusableDialog = builder
                 .setCancelable(false)
                 .setTitle("提示：")
                 .setMessage("网络连接已经断开，请稍后再试。")
