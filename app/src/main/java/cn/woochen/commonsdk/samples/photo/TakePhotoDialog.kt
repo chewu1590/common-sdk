@@ -2,7 +2,7 @@ package cn.woochen.commonsdk.samples.photo
 
 
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
+import androidx.fragment.app.DialogFragment
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -46,7 +46,7 @@ class TakePhotoDialog : DialogFragment(), View.OnClickListener {
 
     private fun initView(rootView: View) {
         // 设置宽度为屏宽、靠近屏幕底部。
-        val window = dialog.window
+        val window = dialog?.window
         val wlp = window!!.attributes
         wlp.gravity = Gravity.BOTTOM
         window.attributes = wlp

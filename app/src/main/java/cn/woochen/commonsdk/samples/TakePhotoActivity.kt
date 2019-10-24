@@ -1,9 +1,10 @@
 package cn.woochen.commonsdk.samples
 
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
 import android.util.Log
+import androidx.recyclerview.widget.GridLayoutManager
 import cn.woochen.common_sdk.takephoto.model.TResult
+import cn.woochen.commonsdk.R
 import cn.woochen.commonsdk.samples.adapter.AddImageAdapter
 import cn.woochen.commonsdk.samples.photo.BaseTakePhotoActivity
 import cn.woochen.commonsdk.samples.photo.TakePhotoDialog
@@ -25,7 +26,7 @@ class TakePhotoActivity : BaseTakePhotoActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(cn.woochen.commonsdk.R.layout.activity_take_photo)
+        setContentView(R.layout.activity_take_photo)
         initView()
     }
 

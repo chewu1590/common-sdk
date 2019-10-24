@@ -2,14 +2,13 @@ package cn.woochen.commonsdk.samples.photo
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import cn.woochen.commonsdk.R
 import cn.woochen.commonsdk.samples.adapter.PreviewImageAdapter
 import kotlinx.android.synthetic.main.fragment_preview_dialog.*
@@ -52,7 +51,7 @@ class PreviewDialogFragment : DialogFragment() {
     private fun initData() {
         tv_page.text = "${mCurrentIndex + 1}/${mImagePaths.size}"
         vp_preview.adapter = mPreviewImageAdapter
-        vp_preview.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+        vp_preview.addOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
                 mCurrentIndex = position
                 tv_page.text = "${mCurrentIndex + 1}/${mImagePaths.size}"
@@ -78,7 +77,7 @@ class PreviewDialogFragment : DialogFragment() {
         if (context is AppCompatActivity){
             manager = context.supportFragmentManager
         }
-        show(manager,tag)
+        if (manager != null) show(manager,tag)
     }
 
 

@@ -3,7 +3,7 @@ package cn.woochen.common_sdk.updater.dialog
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
-import android.support.v7.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.view.*
 import android.widget.ProgressBar
 import android.widget.TextView

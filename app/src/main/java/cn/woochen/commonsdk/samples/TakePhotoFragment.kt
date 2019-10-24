@@ -2,7 +2,7 @@ package cn.woochen.commonsdk.samples
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -41,7 +41,7 @@ class TakePhotoFragment : BaseTakePhotoFragment() {
             override fun add() {
                 val takePhotoDialog = TakePhotoDialog.newInsatance()
                 takePhotoDialog.setTakePhoto(getTakePhoto()!!, false)
-                takePhotoDialog.show(fragmentManager, "takePhoto")
+                if (fragmentManager != null) takePhotoDialog.show(fragmentManager!!, "takePhoto")
             }
         }
     }

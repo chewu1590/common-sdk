@@ -1,7 +1,7 @@
 package cn.woochen.commonsdk.samples.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,7 +62,6 @@ class AddImageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
             var ivDel = viewHolder.itemView.findViewById<ImageView>(R.id.iv_del)
             Glide.with(mContext).load(mDatas[position - 1]).into(ivPic)
             ivPic.setOnClickListener {
-//                PreviewPhotoActivity.start(mContext,mDatas,position - 1)
                 PreviewDialogFragment.newInstance(position-1,mDatas).show(mContext)
             }
             ivDel.setOnClickListener {

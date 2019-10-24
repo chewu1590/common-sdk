@@ -1,6 +1,6 @@
 package cn.woochen.common_sdk.updater.dialog
 
-import android.support.annotation.StyleRes
+import androidx.annotation.StyleRes
 import android.text.TextUtils
 
 /**

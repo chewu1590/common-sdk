@@ -7,7 +7,7 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.net.ConnectivityManager
 import android.os.IBinder
-import android.support.annotation.StyleRes
+import androidx.annotation.StyleRes
 import android.text.TextUtils
 import android.widget.Toast
 import cn.woochen.common_sdk.updater.callback.DialogEventCallback

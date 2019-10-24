@@ -1,7 +1,7 @@
 package cn.woochen.commonsdk.samples.adapter
 
 import android.content.Context
-import android.support.v4.view.PagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide
  *@author woochen
  *@time 2019/4/12 13:48
  */
-class PreviewImageAdapter: PagerAdapter {
+class PreviewImageAdapter: androidx.viewpager.widget.PagerAdapter {
     private var mContext: Context
     private var mDatas: MutableList<String>
     private var mlayoutInflater: LayoutInflater

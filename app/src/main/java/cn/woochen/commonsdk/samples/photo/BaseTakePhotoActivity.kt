@@ -2,7 +2,7 @@ package cn.woochen.commonsdk.samples.photo
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import cn.woochen.common_sdk.takephoto.core.TakePhoto
 import cn.woochen.common_sdk.takephoto.core.TakePhotoImpl
 import cn.woochen.common_sdk.takephoto.model.InvokeParam
@@ -32,7 +32,7 @@ abstract class  BaseTakePhotoActivity :AppCompatActivity() , TakePhoto.TakeResul
     }
 
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         getTakePhoto().onSaveInstanceState(outState)
         super.onSaveInstanceState(outState)
     }

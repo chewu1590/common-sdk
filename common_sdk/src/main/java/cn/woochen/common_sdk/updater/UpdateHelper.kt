@@ -8,7 +8,7 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
-import android.support.v4.content.FileProvider
+import androidx.core.content.FileProvider
 import android.webkit.MimeTypeMap
 import android.widget.Toast
 import java.io.File
